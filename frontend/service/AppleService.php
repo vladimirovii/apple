@@ -21,8 +21,8 @@ class AppleService
         }
 
         $apple->eat($percent);
-        if ($apple->eat_percent >= 100) {
-            $apple->remove();
+        if ($apple->isFullEat()) {
+            $apple->delete();
         } else {
             if (! $apple->save()) {
                 throw new CantSave($apple);

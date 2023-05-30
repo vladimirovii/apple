@@ -64,9 +64,14 @@ class Apple extends \yii\db\ActiveRecord
         return null !== $this->fall_at;
     }
 
+    public function isFullEat(): bool
+    {
+        return $this->eat_percent >= 100;
+    }
+
     public function isSpoiled(): bool
     {
-        return $this->fall_at + self::SPOILED_EXPIRE_TIME < time();
+        return ($this->fall_at + self::SPOILED_EXPIRE_TIME) < time();
     }
 
     public function getSize(): float
@@ -82,10 +87,5 @@ class Apple extends \yii\db\ActiveRecord
     public function eat(float $percent): void
     {
         $this->eat_percent += abs($percent);
-    }
-
-    public function remove(): void
-    {
-        $this->delete();
     }
 }

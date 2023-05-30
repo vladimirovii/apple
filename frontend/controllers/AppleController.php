@@ -34,7 +34,7 @@ class AppleController extends Controller
         ;
 
         if ($model->load($request->post(), '') && $model->validate()) {
-            $this->appleService->eat($apple, (int) $model->percent);
+            $this->appleService->eat($apple, (float) $model->percent);
         }
 
         return $this->redirect(['site/index']);
